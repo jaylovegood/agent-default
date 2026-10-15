@@ -29,7 +29,13 @@ docs/
 
 ## 사용 방법
 
-1. 이 저장소의 파일을 새 프로젝트 루트에 복사합니다. (`.claude/skills` 심볼릭 링크가 유지되도록 `cp -R` 등을 사용하세요.)
+1. 이 저장소의 파일을 `.git` 없이 새 프로젝트 루트에 복사합니다. `.claude/skills` 심볼릭 링크가 유지되어야 합니다.
+
+   ```bash
+   git -C /path/to/agent-default archive HEAD | tar -x -C /path/to/new-project
+   ```
+
+   `git archive`는 커밋된 파일만 내보내므로 `.git`이 섞이지 않고 심볼릭 링크도 보존됩니다. 변경 사항은 먼저 커밋하세요.
 2. [AGENTS.md](AGENTS.md)의 **Project-specific section**을 프로젝트에 맞게 채웁니다: 스택, 명령어, 아키텍처 규칙, 완료 기준. 해당하지 않는 항목은 비워 둡니다.
 3. 도구를 실행하고 작업 모드를 지정해 요청합니다.
 
@@ -82,3 +88,4 @@ Codex에서는 `$feature-flow`, Claude Code에서는 `/feature-flow`처럼 호�
 ## 병렬 세션
 
 서로 무관한 작업을 여러 세션에서 동시에 진행할 때는 작업마다 전용 `git worktree`와 브랜치를 만들어 분리합니다. 규칙은 [AGENTS.md](AGENTS.md)의 *Concurrent sessions*를 참고하세요.
+# agent-default
